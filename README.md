@@ -1,4 +1,4 @@
-# Kubernetes proof of concept
+# Kubernetes basics
 ## Introduction
 This project is a small proof of concept for any beginners in Kubernetes (commonly call k8s and pronounced Kates).
 ## Setup 
@@ -17,20 +17,13 @@ $ microk8s status --wait-ready
 $ microk8s enable dashboard dns registry istio
 
 ```
-## How to use kubectl
+## Setup kubectl
 Kubectl is usable with the following command
 ```bash 
-$ microk8s kubectl ...
+$ kubectl ...
 ```
-If you want to avoid using microk8s as a prefix you can also add the following line in your `.bashrc` or `.zshrc` file
+If you want to avoid using microk8s as a prefix you can also add the following line in your `~/.bashrc` or `~/.zshrc` file
 
-```bash
-# For Bash
-$ nano ~/.bashrc 
-# For zsh
-$ nano ~/.zshrc 
-```
-Line to add
 ```bash
 alias kubectl="microk8s kubectl"
 ```
@@ -43,46 +36,77 @@ $ source ~/.bashrc
 $ source ~/.zshrc 
 ```
 ## Basic commands
+
 ### Start microk8s
 ```bash
-microk8s start 
+$ microk8s start 
 ```
 ### Stop microk8s
 ```bash
-microk8s stop 
+$ microk8s stop 
+```
+### Create a Kubeconfig file
+```bash
+$ microk8s config > Kubeconfig
+```
+
+## Kubectl commands
+### Deployment
+#### Create a deployment
+```bash
+$ kubectl create deployment <Deployment-name> --image=DOCKER-IMAGE
+```
+#### Delete a deployment
+```bash
+$ kubectl delete deployment <Deployment-name> 
+```
+
+#### Expose port for deployment
+```bash
+$ kubectl expose deployment <Deployment-name> --type=LoadBalancer --port=<Port>
+```
+#### Get a list of deployments
+```bash
+$ kubectl get deployments
+```
+### Pods
+#### Get a list of pods
+```bash
+$ kubectl get pods
 ```
 
 ### Start the dashboard
 ```bash
 $ microk8s dashboard-proxy
 ```
-### List all the namespaces
+### Namespaces
+#### List all the namespaces
 ```bash
-$ microk8s kubectl get all --all-namespaces
+$ kubectl get all --all-namespaces
 ```
-### Create namespace
+#### Create namespace
 This is like a workspace but you will be putting all the resources and services your app will need.
 ```bash
-$ microk8s kubectl create namespace nginx-deployment
+$ kubectl create namespace nginx-deployment
 ```
-### Create resource quota
+### Working with files (The declarative way)
+#### Create resource quota
 ```bash
-$ microk8s kubectl create -f nginx_resourcequota.yml
+$ kubectl create -f nginx_resourcequota.yml
 ```
-### Create deployment
+#### Create deployment
 ```bash
-$ microk8s kubectl create -f nginx_deployment.yml
+$ kubectl create -f nginx_deployment.yml
 ```
-### Create service
+
+#### Create service
 ```bash
-$ microk8s kubectl create -f nginx_service.yml
+$ kubectl create -f nginx_service.yml
 ```
-### Create a Kubeconfig file
-```bash
-$ microk8s config > Kubeconfig
-```
-## Recommended Vscode extension
+
+## Recommended VSCode extension
 I strongly recommend using the following VSCode extension:
 [Kubernetes for VSCode](https://marketplace.visualstudio.com/items?itemName=ms-kubernetes-tools.vscode-kubernetes-tools)
 ## Reference
 - [Kubernetes Deployment Tutorial For Beginners](https://devopscube.com/kubernetes-deployment-tutorial/)
+- [Learning To Use Kubernetes - DEV Community](https://dev.to/rinkiyakedad/learning-to-use-kubernetes-1l6g)
