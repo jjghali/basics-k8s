@@ -98,6 +98,10 @@ $ kubectl create -f nginx_resourcequota.yml
 ```bash
 $ kubectl create -f nginx_deployment.yml
 ```
+#### Update deployment
+```bash
+$ kubectl apply -f nginx_deployment.yml
+```
 
 #### Create service
 ```bash
