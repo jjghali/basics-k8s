@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ResourceQuota
 metadata:
   name: mem-cpu-quota
-  namespace: nginx-deployment
+  namespace: nodejs-deployment
 spec:
   hard:
     requests.cpu: "4"

@@ -8,7 +8,7 @@ metadata:
   annotations:
     monitoring: "true"
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app: nodejs
@@ -21,7 +21,7 @@ spec:
       - image: jjghali/poc-k8-node:latest
         name: nodejs
         ports:
-        - containerPort: 3000
+          - containerPort: 3000
         resources:
           limits:
             memory: "2Gi"
@@ -29,3 +29,24 @@ spec:
           requests: 
             memory: "1Gi"
             cpu: "500m"
+        env:
+          - name: K8_NODE_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: spec.nodeName
+          - name: K8_POD_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.name
+          - name: K8_POD_NAMESPACE
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.namespace
+          - name: K8_POD_IP
+            valueFrom:
+              fieldRef:
+                fieldPath: status.podIP
+          - name: K8_POD_SERVICE_ACCOUNT
+            valueFrom:
+              fieldRef:
+                fieldPath: spec.serviceAccountName
