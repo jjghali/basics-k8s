@@ -114,3 +114,4 @@ I strongly recommend using the following VSCode extension:
 ## Reference
 - [Kubernetes Deployment Tutorial For Beginners](https://devopscube.com/kubernetes-deployment-tutorial/)
 - [Learning To Use Kubernetes - DEV Community](https://dev.to/rinkiyakedad/learning-to-use-kubernetes-1l6g)
+- [How To Deploy a Scalable and Secure Django Application with Kubernetes - DigitalOcean](https://www.digitalocean.com/community/tutorials/how-to-deploy-a-scalable-and-secure-django-application-with-kubernetes)
